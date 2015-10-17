@@ -13,7 +13,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $@
 
 .cpp.o:
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+	$(CXX) $< -o $@ $(CXXFLAGS) $(LDFLAGS)
 
 .phony: clean
 
