@@ -10,7 +10,7 @@ EXECUTABLE = a.out
 all: $(SOURCES) $(EXECUTABLE)
 	    
 $(EXECUTABLE): $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $@
+	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
 
 .cpp.o:
 	$(CXX) $< -o $@ $(CXXFLAGS) $(LDFLAGS)

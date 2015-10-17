@@ -12,8 +12,8 @@ int main(){
 
     edges = 0;
     nodes = 70;
-    Graph g(nodes);
-    eSQL e;
+    Graph g = Graph(nodes);
+    eSQL e = eSQL();
     e.readsql(g, nodes, edges);
 
     cout << "please input queries: ";
