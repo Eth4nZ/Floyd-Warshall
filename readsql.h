@@ -12,7 +12,9 @@ class eSQL{
 public:
     eSQL();
 
-    bool readsql(Graph&, int&, int&);
+    bool readGraph(Graph&, int&, int&);
+    bool readStation(int, string&);
+    bool readLink(int, int, string&, string, int&);
 };
 
 #endif  //READ_SQL_H_

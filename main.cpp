@@ -9,12 +9,15 @@ using namespace std;
 int main(){
     int nodes, edges, queries;
     int from, to;
+    string curRouteID, lastRouteID;
+    string fromName, toName;
+    int cost;
 
     edges = 0;
     nodes = 70;
     Graph g = Graph(nodes);
     eSQL e = eSQL();
-    e.readsql(g, nodes, edges);
+    e.readGraph(g, nodes, edges);
 
     cout << "please input queries: ";
     cin >> queries;
@@ -26,11 +29,15 @@ int main(){
         cin >> to;
         try{
             path = g.findShortestPath(from, to);
+            e.readStation(path[1], fromName);
             cout << "cost = " << path[0] << endl;
-            for(int i = 1; i < path.size()-1; i++){
-                cout << path[i] << "-";
+            cout << fromName;
+            for(int i = 2; i < path.size(); i++){
+                e.readLink(path[i-1], path[i], curRouteID, lastRouteID, cost);
+                e.readStation(path[i], toName);
+                cout << "--" << curRouteID << "/" << cost << "m--" << toName;
             }
-            cout << path.back() << endl;
+            cout << endl;
         }catch(logic_error& e){
         cout << e.what() << endl;
         }
