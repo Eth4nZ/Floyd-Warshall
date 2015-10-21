@@ -10,10 +10,11 @@ using namespace std;
 class Graph{
 private:
     int nodes;
-    vector<vector<int> > adjacency_matrix;
+    vector<vector<vector<int> > > adjacency_matrix;
 public:
     Graph(int nodes);
     vector<int> findShortestPath(int from, int to);
+    vector<int> findShortestPath(int from, int trans, int to);
     void connect(int from, int to, int cost);
 };
 

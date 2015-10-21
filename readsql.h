@@ -14,6 +14,7 @@ public:
 
     bool readGraph(Graph&, int&, int&);
     bool readStation(int, string&);
+    bool readRoute(string, &int);
     bool readLink(int, int, string&, string, int&);
 };
 
