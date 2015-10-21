@@ -1,4 +1,5 @@
 #include "readsql.h"
+#include <vector>
 
 using namespace std;
 using namespace mysqlpp;
@@ -129,3 +130,59 @@ bool eSQL::readLink(int sfrom, int sto, string &routeID, string lastRouteID, int
     return (EXIT_SUCCESS);
 }
 
+bool eSQL::readRoute(string id, int &price){
+    StoreQueryResult ares;
+    try {
+        Connection conn(false);
+        conn.set_option(new SetCharsetNameOption("utf8"));
+        conn.connect("map", "localhost", "root", "dtbs");
+        Query query = conn.query();
+        query << "SELECT * FROM Route where id = '" << id << "';";
+        StoreQueryResult ares = query.store();
+        price = (ares[0]["price"]);
+    } catch (BadQuery er) { // handle any connection or
+        // query errors that may come up
+        cerr << "Error: " << er.what() << endl;
+        return -1;
+    } catch (const BadConversion& er) {
+        // Handle bad conversions
+        cerr << "Conversion error: " << er.what() << endl <<
+                "\tretrieved data size: " << er.retrieved <<
+                ", actual size: " << er.actual_size << endl;
+        return -1;
+    } catch (const Exception& er) {
+        // Catch-all for any other MySQL++ exceptions
+        cerr << "Error: " << er.what() << endl;
+        return -1;
+    }
+
+    return (EXIT_SUCCESS);
+}
+
+bool eSQL::writeRoute(vector<int> path){
+    string curRouteID, lastRouteID;
+    string fromName, toName;
+    int sum = 0, price, cost;
+
+    readStation(path[1], fromName);
+    if(path[0] < 9999999){
+        cout << fromName;
+        for(int i = 2; i < (int)path.size(); i++){
+            readLink(path[i-1], path[i], curRouteID, lastRouteID, cost);
+            readStation(path[i], toName);
+            if(curRouteID != lastRouteID){
+                readRoute(curRouteID, price);
+                sum += price;
+            }
+            cout << "--" << curRouteID << "/" << cost << "m--" << toName;
+            lastRouteID = curRouteID;
+        }
+            cout << endl;
+            cout << "distance: " << (double)path[0]/1000 << "km, time:" << (double)path[0]/15000*60 << "min, " << "price: " << sum << " yuan" << endl << endl;;
+            return 1;
+    }
+    else{
+        cout << "NO PATH" << endl;
+        return 0;
+    }
+}

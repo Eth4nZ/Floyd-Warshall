@@ -2,6 +2,8 @@
 #define READ_SQL_H_
 
 #include <mysql++.h>
+#include <vector>
+#include <iostream>
 #include "FloydWarshall.h"
 #include "readsql.h"
 
@@ -14,8 +16,9 @@ public:
 
     bool readGraph(Graph&, int&, int&);
     bool readStation(int, string&);
-    bool readRoute(string, &int);
+    bool readRoute(string, int&);
     bool readLink(int, int, string&, string, int&);
+    bool writeRoute(vector<int> path);
 };
 
 #endif  //READ_SQL_H_
