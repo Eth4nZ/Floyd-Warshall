@@ -32,24 +32,6 @@ int main(){
         try{
             path = g.findShortestPath(from, to);
             e.writeRoute(path);
-            /*e.readStation(path[1], fromName);
-            if(path[0] < 9999999){
-                cout << fromName;
-                for(int i = 2; i < path.size(); i++){
-                    e.readLink(path[i-1], path[i], curRouteID, lastRouteID, cost);
-                    e.readStation(path[i], toName);
-                    if(curRouteID != lastRouteID){
-                        e.readRoute(curRouteID, price);
-                        sum += price;
-                    }
-                    cout << "--" << curRouteID << "/" << cost << "m--" << toName;
-                    lastRouteID = curRouteID;
-                }
-                cout << endl;
-                cout << "distance: " << (double)path[0]/1000 << "km, time:" << (double)path[0]/15000*60 << "min, " << "price: " << sum << " yuan" << endl << endl;;
-            }
-            else
-                cout << "NO PATH" << endl;*/
         }catch(logic_error& e){
             cout << e.what() << endl;
         }
