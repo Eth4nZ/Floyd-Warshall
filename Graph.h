@@ -24,6 +24,7 @@ public:
     int* getIndegree();
     bool isEdge(Edge edge);
     vector<int> findShortestPath(int s, int sto);
+    vector<int> findShortestPath_trans(int from, int trans, int to);
     virtual Edge firstEdge(int oneVertex)=0;
     virtual Edge nextEdge(Edge pre)=0;
     virtual void setEdge(int from, int to, int weight)=0;

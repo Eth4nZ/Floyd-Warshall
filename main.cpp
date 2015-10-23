@@ -42,9 +42,8 @@ int main(){
                 e.writeRoute(path);
             }
             else{
-                path = g.findShortestPath(from, trans);
-                e.writeRoute(path);
-                path = g.findShortestPath(trans, to);
+                //to is trans, trans is to;
+                path = g.findShortestPath_trans(from, to, trans);
                 e.writeRoute(path);
             }
         }catch(logic_error& e){

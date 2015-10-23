@@ -102,3 +102,16 @@ vector<int> Graph::findShortestPath(int s, int sto){
 }
 
 
+vector<int> Graph::findShortestPath_trans(int from, int trans, int to){
+    vector<int> path;
+    vector<int> path1;
+    vector<int> path2;
+    path1 = findShortestPath(from, trans);
+    path2 = findShortestPath(trans, to);
+    path.push_back(path1[0]+path2[0]);
+    for(int i = 1; i < (int)path1.size(); i++)
+        path.push_back(path1[i]);
+    for(int i = 2; i < (int)path2.size(); i++)
+        path.push_back(path2[i]);
+    return path;
+}
