@@ -4,7 +4,8 @@
 #include <mysql++.h>
 #include <vector>
 #include <iostream>
-#include "FloydWarshall.h"
+#include "Graph.h"
+#include "AdjacencyList.h"
 #include "readsql.h"
 
 using namespace std;

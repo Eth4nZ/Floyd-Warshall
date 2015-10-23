@@ -1,7 +1,8 @@
 #include <vector>
 #include <iostream>
 #include <stdexcept>
-#include "FloydWarshall.h"
+#include "Graph.h"
+#include "AdjacencyList.h"
 #include "readsql.h"
 
 using namespace std;
@@ -11,10 +12,11 @@ int main(){
     int from, to;
 
     edges = 0;
-    nodes = 71;
-    Graph g = Graph(nodes);
+    nodes = 500;
+    AdjacencyList g(nodes);
     eSQL e = eSQL();
     e.readGraph(g, nodes, edges);
+    cout << nodes << " " << edges << endl;
 
     //cout << "please input queries: ";
     //cin >> queries;
@@ -30,7 +32,9 @@ int main(){
             break;
         cin >> to;
         try{
+            cout << "---" << endl;
             path = g.findShortestPath(from, to);
+            cout << "---" << endl;
             e.writeRoute(path);
         }catch(logic_error& e){
             cout << e.what() << endl;

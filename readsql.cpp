@@ -18,15 +18,13 @@ bool eSQL::readGraph(Graph &g, int &nodes, int &edges){
         query << "SELECT COUNT(*) AS Station_count FROM Station;";
         ares = query.store();
         nodes = ares[0]["Station_count"];
-        Graph g0(nodes);
 
         query << "SELECT * FROM Link;";
         ares = query.store();
         for (size_t i = 0; i < ares.num_rows(); i++){
             edges++;
-            g0.connect(ares[i]["sfrom"], ares[i]["sto"], ares[i]["cost"]);
+            g.setEdge(ares[i]["sfrom"], ares[i]["sto"], ares[i]["cost"]);
         }
-        g = g0;
     } catch (BadQuery er) { // handle any connection or
         // query errors that may come up
         cerr << "Error: " << er.what() << endl;
