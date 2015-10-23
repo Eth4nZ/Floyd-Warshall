@@ -65,9 +65,7 @@ vector<int> Graph::findShortestPath(int s, int sto){
         D[i]->index = i;
         D[i]->length = INFINITY;
         D[i]->pre = s;
-    //    cout << i << " index: " << D[i]->index <<  " length: " << D[i]->length << " pre: " << D[i]->pre << endl;
     }
-    cout << "aaa" << endl;
     D[s]->length = 0;
     MinHeap H(edgesNumber()); // = new MinHeap(G.edgesNumber());
     H.insert(D[s]);
