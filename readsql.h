@@ -16,10 +16,14 @@ public:
     eSQL();
 
     bool readGraph(Graph&, int&, int&);
+    bool readGraphMinWalk(Graph&, int&, int&);
+    bool readGraphCheapest(Graph&, int&, int&);
     bool readStation(int, string&);
     bool readRoute(string, int&);
     bool readLink(int, int, string&, string, int&);
     bool writeRoute(vector<int> path);
+    bool writeBrief(int, int);
+    bool writeBrief(int, int, int);
 };
 
 #endif  //READ_SQL_H_
